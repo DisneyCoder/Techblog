@@ -6,7 +6,7 @@
         <!-- Logo -->
         <div class="flex items-center justify-start">
           <div class="flex items-center flex-shrink-0">
-            <a href="./">
+            <a href="{{route('blog.index')}}">
               <img class="block w-auto h-10" src="https://tailwindui.com/img/logos/mark.svg?color=emerald&shade=600"
                 alt="Logo" />
             </a>

@@ -16,19 +16,19 @@
     <!-- Category Pill -->
     <div>
         <a class="inline-flex gap-0.5 justify-center overflow-hidden text-sm sm:text-base font-medium transition rounded-full py-1 px-3 bg-emerald-400/10 text-emerald-400 ring-1 ring-inset ring-emerald-400/20 hover:bg-emerald-400/10 hover:text-emerald-300 hover:ring-emerald-300"
-        href="/#">Technology</a>
+        href="{{route('blog.index',['category'=>$post->category->slug])}}">{{ $post->category->name}}</a>
     </div>
 
     <!-- Date -->
     <p class="text-sm font-semibold sm:text-base text-zinc-400">
-        4 months ago
+        {{ $post->created_at->diffForHumans()}}
     </p>
     </div>
 
     <!-- Main Content -->
     <div>
     <!-- Article Title -->
-    <a href="./pages/article.html">
+    <a href="{{route('blog.single', $post->slug)}}">
         <h3 class="mb-4 text-xl font-bold md:text-4xl hover:underline decoration-emerald-700">
         {{$post->title}}
         </h3>
@@ -45,13 +45,13 @@
     <!-- Author Info -->
     <div class="flex items-center gap-2">
         <img class="w-8 h-8 p-0.5 rounded-full ring-1 ring-emerald-500"
-        src="https://avatars.githubusercontent.com/u/61485238?v=4" alt="Al Nahian" />
-        <h4>Al Nahian</h4>
+        src="https://avatars.githubusercontent.com/u/110191339?v=4" alt="{{ $post->user->name}}" />
+        <h4>{{ $post->user->name}} </h4>
     </div>
 
     <!-- Read More Link -->
     <a class="inline-flex gap-0.5 justify-center overflow-hidden text-base font-medium transition text-emerald-400 hover:text-emerald-500"
-        href="./pages/article.html">
+        href="{{route('blog.single', $post->slug)}}">
         Read more
         <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" class="mt-0.5 h-5 w-5 relative top-px -mr-1">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -65,6 +65,8 @@
     Sorry, No post found.
     </h3>
 @endforelse
+
+{{$posts->links()}}
     </section>
 
     <!-- Sidebar Widgets -->
@@ -76,14 +78,18 @@
 
         <!-- Categories with Post Count -->
         <div class="flex flex-row flex-wrap gap-2 text-gray-400">
+          @forelse ($categories as $category)
           <a class="inline-flex items-center justify-center gap-2 px-3 py-1 text-lg font-medium transition rounded-full ring-1 ring-inset text-zinc-400 ring-white/10 hover:bg-white/5 hover:text-white"
-            href="/#">Technology
+          href="{{route('blog.Categories', $category->slug)}}">{{$category->name}}
 
-            <span
-              class="text-sm font-medium transition rounded-full py-0.5 w-6 h-6 text-center bg-emerald-800/40 text-emerald-400 ring-1 ring-emerald-400/20">
-              99
-            </span>
-          </a>
+          <span
+            class="text-sm font-medium transition rounded-full py-0.5 w-6 h-6 text-center bg-emerald-800/40 text-emerald-400 ring-1 ring-emerald-400/20">
+            {{$category->posts->count()}}
+          </span>
+        </a>
+          @empty
+
+          @endforelse
         </div>
       </div>
 

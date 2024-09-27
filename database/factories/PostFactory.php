@@ -23,7 +23,7 @@ class PostFactory extends Factory {
             'category_id' => Category::inRandomOrder()->first()->id, //?? null, // Avoid errors if no category exists
             'title' => $title,
             'slug' => str($title)->slug(),
-            'body' => $this->faker->realText(random_int(500, 1000)),
+            'body' => $this->faker->realText(random_int(2000, 10000)),
             'views' => random_int(5, 1000),
         ];
     }
