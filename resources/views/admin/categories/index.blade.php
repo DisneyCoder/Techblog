@@ -56,8 +56,12 @@
                                     </td>
                                     <td class="px-6 py-4 text-right space-x-4">
                                         <a href="{{route('admin.categories.edit',$category)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        <form class="inline-flex" action="{{route('admin.categories.destroy', $category)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                        <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete<button>
+                                        </form>
 
-                                        <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
                                     </td>
                                 </tr>
                                 @empty
@@ -66,6 +70,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="mt-5">{{$categories->links()}}</div>
                  </div>
             </div>
         </div>

@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder {
      */
     public function run(): void {
         //generate admin user
-        User::factory()->admin()->create();
+        //use this in the tinker and to mitigate error
+        //User::factory()->admin()->create();
 
         $this->call(
             [

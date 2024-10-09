@@ -7,7 +7,7 @@
         <div class="flex items-center justify-start">
           <div class="flex items-center flex-shrink-0">
             <a href="{{route('blog.index')}}">
-              <img class="block w-auto h-10" src="https://tailwindui.com/img/logos/mark.svg?color=emerald&shade=600"
+              <img class="block w-auto h-10" src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.3c5441fc7a190fb1800d4a5c7f07ba4b1345a9c8.svg"
                 alt="Logo" />
             </a>
           </div>
@@ -16,7 +16,7 @@
         <!-- Search Box -->
         <div class="flex-grow min-w-0 px-0">
           <div class="flex items-center px-0 py-4 mx-auto">
-            <form class="w-full" action="/" method="GET">
+            <form class="w-full" action="{{route('blog.index')}}" method="GET">
               <label for="search" class="sr-only">Search</label>
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -29,7 +29,7 @@
                 </div>
                 <input id="search" name="query"
                   class="block w-full py-3 pl-10 pr-3 text-lg transition border-0 rounded-full placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-2xl sm:leading-6 ring-1 ui-not-focus-visible:outline-none lg:flex bg-white/5 text-zinc-400 ring-inset ring-white/10 hover:ring-white/20"
-                  placeholder="Search" type="search" />
+                  placeholder="Search" type="search" value="{{request('query')}}" />
               </div>
             </form>
           </div>
