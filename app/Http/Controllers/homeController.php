@@ -15,6 +15,13 @@ class homeController extends Controller {
         $posts = Post::when($request->query('query'), function (Builder $query) use ($request) {
             return $query->where('title', 'LIKE', '%' . $request->query('query') . '%');
         })
+
+            ->when($request->query('category'), function (Builder $query) use ($request) {
+                return $query->whereHas('category', function (Builder $query) use ($request) {
+
+                    return $query->where('slug', $request->query('category'));
+                });
+            })
             ->latest()
             ->paginate(10);
 
