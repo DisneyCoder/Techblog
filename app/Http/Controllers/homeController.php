@@ -12,9 +12,10 @@ class homeController extends Controller {
 
 
     public function __invoke(Request $request) {
-        $posts = Post::when($request->query('query'), function (Builder $query) use ($request) {
-            return $query->where('title', 'LIKE', '%' . $request->query('query') . '%');
-        })
+        $posts = Post::with('user', 'category')
+            ->when($request->query('query'), function (Builder $query) use ($request) {
+                return $query->where('title', 'LIKE', '%' . $request->query('query') . '%');
+            })
 
             ->when($request->query('category'), function (Builder $query) use ($request) {
                 return $query->whereHas('category', function (Builder $query) use ($request) {
